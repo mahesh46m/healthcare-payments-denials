@@ -28,9 +28,9 @@ Requires Python 3.8+ only (built-in `sqlite3`, no installs).
 python scripts/run_analysis.py   # builds payments.db on first run
 ```
 
-## How I build these projects (AI, used honestly)
+## How I use AI in this work
 
-I use AI tools as a drafting partner: they help me sketch schemas, SQL and analysis structure quickly. Everything that ships here is then **verified by actually running it** - the numbers above come from executing the code, not from the AI's claims. Synthetic data keeps the whole workflow safe to share. That is how I use AI in my analytics work: fast drafts, machine-checked results, and domain judgment for what the metrics should mean.
+I use AI tools to make the work better: exploring more design options before committing, widening test coverage, and shortening the path from question to insight. Everything here is produced by code that runs and is machine-checked, on synthetic data, and the analysis choices are mine. Used this way, AI raises the quality bar and the speed to insight - it is not a shortcut around the work.
 
 ## Layout
 
