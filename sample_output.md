@@ -40,6 +40,35 @@ remittance service lines; no real payer, provider or patient data.
 | BCBS | 1112 | 12.4% | $1,388,794 | $735,183 | 18.6 |
 | Aetna | 1004 | 15.2% | $1,209,141 | $624,483 | 18.7 |
 
+## Monthly denial trend (first pass, by service month)
+
+| Month | Lines | Denial rate | Denied billed |
+|---|---|---|---|
+| 2026-01 | 867 | 13.7% | $146,511 |
+| 2026-02 | 805 | 15.0% | $151,825 |
+| 2026-03 | 927 | 13.5% | $164,409 |
+| 2026-04 | 804 | 12.3% | $117,135 |
+| 2026-05 | 809 | 13.6% | $135,771 |
+| 2026-06 | 788 | 12.1% | $111,753 |
+
+## Root-cause worklist (top payer x CARC cells)
+
+Ranked by billed dollars denied. Expected recovery applies the observed
+appeal win rate to each cell's denied dollars (an estimate, not a forecast).
+
+| Payer | CARC | Lines | Denied billed | Expected recovery |
+|---|---|---|---|---|
+| UnitedHealthcare | 16 | 42 | $52,137 | $30,095 |
+| BCBS | 16 | 33 | $41,281 | $23,829 |
+| Aetna | 16 | 30 | $37,014 | $21,366 |
+| Aetna | 4 | 23 | $31,612 | $18,248 |
+| UnitedHealthcare | 4 | 27 | $28,160 | $16,255 |
+| Aetna | 18 | 18 | $24,761 | $14,293 |
+| BCBS | 18 | 17 | $21,670 | $12,509 |
+| UnitedHealthcare | 197 | 14 | $20,746 | $11,975 |
+| UnitedHealthcare | 96 | 14 | $20,143 | $11,627 |
+| Aetna | 197 | 18 | $19,571 | $11,297 |
+
 ## Appeals
 
 | KPI | Value |
