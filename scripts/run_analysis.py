@@ -46,6 +46,20 @@ def main() -> None:
         "FROM remittance_lines WHERE submission = 1 GROUP BY 1 ORDER BY 3.0/2 DESC"
     ).fetchall()
 
+    monthly = con.execute(
+        "SELECT substr(service_date, 1, 7), COUNT(*), "
+        "SUM(CASE WHEN denial_code IS NOT NULL THEN 1 ELSE 0 END), "
+        "SUM(CASE WHEN denial_code IS NOT NULL THEN billed ELSE 0 END) "
+        "FROM remittance_lines WHERE submission = 1 GROUP BY 1 ORDER BY 1"
+    ).fetchall()
+
+    # Root-cause worklist: payer x CARC cells ranked by billed dollars denied.
+    worklist = con.execute(
+        "SELECT payer, denial_code, COUNT(*), SUM(billed) "
+        "FROM remittance_lines WHERE submission = 1 AND denial_code IS NOT NULL "
+        "GROUP BY 1, 2 ORDER BY 4 DESC LIMIT 10"
+    ).fetchall()
+
     # Appeals: claims denied on first pass with a later submission.
     (appealed,) = con.execute(
         "SELECT COUNT(DISTINCT claim_id) FROM remittance_lines WHERE submission = 2"
@@ -97,6 +111,27 @@ def main() -> None:
         *[
             f"| {p} | {c} | {pct(d / c)} | {money(b)} | {money(pd)} | {dtp:.1f} |"
             for p, c, d, b, pd, dtp in by_payer
+        ],
+        "",
+        "## Monthly denial trend (first pass, by service month)",
+        "",
+        "| Month | Lines | Denial rate | Denied billed |",
+        "|---|---|---|---|",
+        *[
+            f"| {m} | {c} | {pct(d / c)} | {money(b)} |"
+            for m, c, d, b in monthly
+        ],
+        "",
+        "## Root-cause worklist (top payer x CARC cells)",
+        "",
+        "Ranked by billed dollars denied. Expected recovery applies the observed",
+        "appeal win rate to each cell's denied dollars (an estimate, not a forecast).",
+        "",
+        "| Payer | CARC | Lines | Denied billed | Expected recovery |",
+        "|---|---|---|---|---|",
+        *[
+            f"| {p} | {cd} | {c} | {money(b)} | {money(b * appeal_won / appealed)} |"
+            for p, cd, c, b in worklist
         ],
         "",
         "## Appeals",
