@@ -69,7 +69,7 @@ def main() -> None:
         _, payer, deny_rate = pick(rng, PAYERS)
         billed = round(rng.uniform(60, 2400), 2)
         allowed = round(billed * rng.uniform(0.45, 0.85), 2)
-        svc = base + timedelta(days=rng.randint(0, 89))
+        svc = base + timedelta(days=rng.randint(0, 179))
         remit = svc + timedelta(days=rng.randint(7, 30))
         if rng.random() < deny_rate:
             _, code, _ = pick(rng, CARC)
