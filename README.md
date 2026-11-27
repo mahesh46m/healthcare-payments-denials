@@ -7,7 +7,7 @@ A portfolio project by **Mahesh M**: denial-rate, CARC-reason Pareto, payer scor
 ## What it does
 
 1. **Generate** (`scripts/generate_data.py`): 5,000 first-pass remittance service lines across 6 payers (each with its own denial rate) and 9 CARC denial reasons, plus resubmissions: 55% of denied lines are appealed and about 62% of appeals get paid.
-2. **Analyze** (`scripts/run_analysis.py`): first-pass denial and acceptance rates, denied dollars at stake, denial-reason Pareto with cumulative share, per-payer scorecard (denial rate, collections, days to pay), and appeal funnel (appealed, won, recovered).
+2. **Analyze** (`scripts/run_analysis.py`): first-pass denial and acceptance rates, denied dollars at stake, denial-reason Pareto with cumulative share, per-payer scorecard (denial rate, collections, days to pay), a monthly denial trend, a root-cause worklist (top payer x CARC cells ranked by denied dollars, with expected recovery at the observed appeal win rate), and the appeal funnel (appealed, won, recovered).
 
 ## Headline results (seed 31)
 
@@ -42,7 +42,7 @@ scripts/run_analysis.py    KPIs, Pareto, payer scorecard, appeal funnel
 
 ## Possible extensions
 
-Denial trend by month, root-cause worklists (top CARC x payer cells by recoverable dollars), expected-reimbursement variance (paid vs allowed), and a Power BI dashboard over the same queries.
+Expected-reimbursement variance (paid vs allowed), denial category drill-downs by specialty, and a Power BI dashboard over the same queries.
 
 ---
 Author: Mahesh M. Released under the MIT License.
